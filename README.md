@@ -77,7 +77,8 @@
   controller层只负责数据的转换，（接受不准有Map这样比较宽泛的）
   service层涉及到数据的逻辑处理。（其中包括异常处理，在一些关键的地方打日志。其中显示关键的数据）
   
+  数据库的位置在：https://github.com/tkzc0552/mfwsql2.0
   
  
-  登录地址是：最好域名登录比如：www.zhm.com:8080  
+  登录地址是：最好域名登录比如：www.zhm.com:8093  
                             用户名和密码是admin admin
