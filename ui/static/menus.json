@@ -1,0 +1,192 @@
+[
+    {
+        "parentMenuCode": null,
+        "menuCode": "001001005",
+        "menuEname": "ams",
+        "menuCname": "权限系统",
+        "leafFlag": 0,
+        "menuLink": "",
+        "menuLevel": 2,
+        "children": [
+            {
+                "parentMenuCode": null,
+                "menuCode": "001001005001",
+                "menuEname": "sysUser",
+                "menuCname": "系统用户",
+                "leafFlag": 0,
+                "menuLink": "/sysUser",
+                "menuLevel": 3,
+                "children": null,
+                "opts": null
+            },
+            {
+                "parentMenuCode": null,
+                "menuCode": "001001005004",
+                "menuEname": "sysDept",
+                "menuCname": "系统部门",
+                "leafFlag": 0,
+                "menuLink": "/sysDept",
+                "menuLevel": 3,
+                "children": null,
+                "opts": null
+            },
+            {
+                "parentMenuCode": null,
+                "menuCode": "001001005002",
+                "menuEname": "sysMenu",
+                "menuCname": "系统菜单",
+                "leafFlag": 0,
+                "menuLink": "/sysMenu",
+                "menuLevel": 3,
+                "children": null,
+                "opts": [
+                    {
+                        "optCode": "001001005002009",
+                        "optCname": "编辑",
+                        "optEname": "edit",
+                        "urls": null
+                    },
+                    {
+                        "optCode": "001001005002099",
+                        "optCname": "启禁用",
+                        "optEname": "oc",
+                        "urls": null
+                    },
+                    {
+                        "optCode": "001001005002100",
+                        "optCname": "查询",
+                        "optEname": "query",
+                        "urls": null
+                    },
+                    {
+                        "optCode": "001001005002001",
+                        "optCname": "新增",
+                        "optEname": "add",
+                        "urls": null
+                    }
+                ]
+            },
+            {
+                "parentMenuCode": null,
+                "menuCode": "001001005005",
+                "menuEname": "sysGenerator",
+                "menuCname": "代码生成器",
+                "leafFlag": 0,
+                "menuLink": "/sysGenerator",
+                "menuLevel": 3,
+                "children": null,
+                "opts": null
+            },
+            {
+                "parentMenuCode": null,
+                "menuCode": "001001005003",
+                "menuEname": "sysRole",
+                "menuCname": "系统角色",
+                "leafFlag": 0,
+                "menuLink": "/sysRole",
+                "menuLevel": 3,
+                "children": null,
+                "opts": [
+                    {
+                        "optCode": "001001005003001",
+                        "optCname": "新增",
+                        "optEname": "add",
+                        "urls": null
+                    }
+                ]
+            }
+        ],
+        "opts": null
+    },
+    {
+        "parentMenuCode": null,
+        "menuCode": "001001006",
+        "menuEname": "announce",
+        "menuCname": "公告管理",
+        "leafFlag": 0,
+        "menuLink": "/announce",
+        "menuLevel": 2,
+        "children": [
+            {
+                "parentMenuCode": null,
+                "menuCode": "001001006001",
+                "menuEname": "sysAnnounce",
+                "menuCname": "公告列表",
+                "leafFlag": 0,
+                "menuLink": "/sysAnnounce",
+                "menuLevel": 3,
+                "children": null,
+                "opts": null
+            }
+        ],
+        "opts": null
+    },
+    {
+        "parentMenuCode": null,
+        "menuCode": "001001007",
+        "menuEname": "param",
+        "menuCname": "系统参数",
+        "leafFlag": 0,
+        "menuLink": "",
+        "menuLevel": 2,
+        "children": [
+            {
+                "parentMenuCode": null,
+                "menuCode": "001001007002",
+                "menuEname": "sysArea",
+                "menuCname": "行政区域管理",
+                "leafFlag": 0,
+                "menuLink": "/sysArea",
+                "menuLevel": 3,
+                "children": null,
+                "opts": null
+            },
+            {
+                "parentMenuCode": null,
+                "menuCode": "001001007001",
+                "menuEname": "paramSetting",
+                "menuCname": "系统参数管理",
+                "leafFlag": 0,
+                "menuLink": "/param_setting",
+                "menuLevel": 3,
+                "children": null,
+                "opts": null
+            }
+        ],
+        "opts": null
+    },
+    {
+        "parentMenuCode": null,
+        "menuCode": "001001008",
+        "menuEname": "logManage",
+        "menuCname": "日志管理",
+        "leafFlag": 0,
+        "menuLink": "",
+        "menuLevel": 2,
+        "children": [
+            {
+                "parentMenuCode": null,
+                "menuCode": "001001008001",
+                "menuEname": "syslog",
+                "menuCname": "系统日志",
+                "leafFlag": 0,
+                "menuLink": "/syslog",
+                "menuLevel": 3,
+                "children": null,
+                "opts": null
+            },
+            {
+                "parentMenuCode": null,
+                "menuCode": "001001008002",
+                "menuEname": "operationLog",
+                "menuCname": "接口日志",
+                "leafFlag": 0,
+                "menuLink": "/operationLog",
+                "menuLevel": 3,
+                "children": null,
+                "opts": null
+            }
+        ],
+        "opts": null
+    }
+]

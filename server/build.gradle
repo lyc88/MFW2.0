@@ -1,0 +1,78 @@
+buildscript{
+    repositories {
+        mavenLocal()
+        maven { url "http://repo1.maven.org/maven2" }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.0.RELEASE")
+    }
+}
+project(':server'){
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    apply from: "${rootDir}/gradle/java.gradle"
+
+    dependencies {
+        compile(project(":dao"))
+        compile('org.springframework.boot:spring-boot-starter')
+        compile('org.springframework.boot:spring-boot-starter-cache')
+        compile('org.springframework.boot:spring-boot-starter-data-jpa')
+        compile('org.springframework.boot:spring-boot-starter-data-redis')
+        compile('org.springframework.boot:spring-boot-starter-log4j2')
+        compile('org.springframework.boot:spring-boot-starter-web')
+        compile('org.springframework.boot:spring-boot-starter-validation')
+        compile('org.springframework.boot:spring-boot-starter-mail')
+        compile('org.springframework.boot:spring-boot-starter-actuator')
+
+        // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+        compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
+        //验证码jar包
+        compile("com.github.penggle:kaptcha:2.3.2")
+        //java web token
+        compile group: 'com.auth0', name: 'java-jwt', version: '3.3.0'
+        //导出Excel
+        compile("org.apache.poi:poi:$poi_version")
+        compile("org.apache.poi:poi-ooxml:$poi_version")
+        //读取pdf
+        compile("org.apache.pdfbox:pdfbox:$pdfbox_version")
+        compile("org.apache.pdfbox:pdfbox-tools:$pdfbox_version")
+        compile("org.apache.pdfbox:fontbox:$pdfbox_version")
+        //httpClient
+        compile("com.squareup.okhttp3:okhttp:$okhttp_version")
+        compile("org.apache.httpcomponents:httpclient:$httpclient_version")
+        //获取系统信息
+        compile("com.github.oshi:oshi-core:$oshi_version")
+        //扫码登录以及聊天室
+        compile('org.springframework.boot:spring-boot-starter-websocket')
+        compile group: 'com.google.zxing', name: 'core', version: '3.3.0'
+        compile group: 'com.google.zxing', name: 'javase', version: '3.3.0'
+        //读取图片相关信息
+       /* compile group: 'com.drewnoakes', name: 'metadata-extractor', version: '2.12.0'
+        compile group: 'com.baidu.aip', name: 'java-sdk', version: '4.12.0'*/
+        /*//集成activeMq
+        compile('org.springframework.boot:spring-boot-starter-activemq')
+        compile group: 'org.apache.activemq', name: 'activemq-pool', version: '5.15.10'*/
+
+    }
+
+    bootJar{
+        destinationDir = file("${rootProject.buildDir}")
+        archiveName = "${rootProject.name}.jar"
+        if(file("${rootDir}/ui/dist").exists()) {
+            from("${rootDir}/ui/dist") {
+                into 'META-INF/resources'
+            }
+        }
+    }
+    bootRun.systemProperty 'spring.profiles.active', 'development'
+
+   springBoot {
+        mainClassName='com.zhm.DemogApplication'
+        buildInfo()
+    }
+
+
+}

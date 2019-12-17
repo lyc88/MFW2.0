@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+日志级别
+trace： 是追踪，就是程序推进以下，你就可以写个trace输出，所以trace应该会特别多，
+不过没关系，我们可以设置最低日志级别不让他输出。
+debug： 调试么，我一般就只用这个作为最低级别，trace压根不用。
+是在没办法就用eclipse或者idea的debug功能就好了么。
+info： 输出一下你感兴趣的或者重要的信息，这个用的最多了。
+warn： 有些信息不是错误信息，但是也要给程序员的一些提示，类似于eclipse中代码的验证不是有error 和warn（不算错误但是也请注意，比如以下depressed的方法）。
+error： 错误信息。用的也比较多。
+fatal： 级别比较高了。重大错误，这种级别你可以直接停止程序了，是不应该出现的错误么！不用那么紧张，其实就是一个程度的问题。
+日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL
+如果设置为WARN，则低于WARN的信息都不会输出。对于Loggers中level的定义同样适用。
+ -->
+<configuration status="OFF">
+    <Properties>
+        <Property name="LOG_HOME">${sys:user.home}/deploy/logs</Property>
+        <Property name="LOG_NAME">MFW.log</Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %class %M-%L -%X{user} - %m%n</Property>
+    </Properties>
+    <appenders>
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+        <File name="file" fileName="${LOG_HOME}/${LOG_NAME}">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </File>
+    </appenders>
+    <loggers>
+        <Logger name="com.zhm" level="debug" additivity="true"/>
+        <Logger name="antlr" level="warn" additivity="true"/>
+        <Logger name="com.alibaba" level="warn" additivity="true"/>
+        <Logger name="com.alibaba.druid" level="info" additivity="true"/>
+        <Logger name="com.alibaba.druid.filter.logging.Slf4jLogFilter" level="debug" additivity="true"/>
+        <Logger name="com.mysql" level="warn" additivity="true"/>
+        <Logger name="javax" level="warn" additivity="true"/>
+        <Logger name="java.sql" level="warn" additivity="true"/>
+        <Logger name="net.sf" level="warn" additivity="true"/>
+        <Logger name="com.fasterxml" level="warn" additivity="true"/>
+        <Logger name="com.google" level="warn" additivity="true"/>
+        <Logger name="org.antlr" level="warn" additivity="true"/>
+        <Logger name="org.apache" level="warn" additivity="true"/>
+        <Logger name="org.aspectj" level="warn" additivity="true"/>
+        <Logger name="org.dom4j" level="warn" additivity="true"/>
+        <Logger name="org.eclipse" level="warn" additivity="true"/>
+        <Logger name="org.hibernate" level="warn" additivity="true"/>
+        <Logger name="org.javassist" level="warn" additivity="true"/>
+        <Logger name="org.jboss" level="warn" additivity="true"/>
+        <Logger name="org.ow2" level="warn" additivity="true"/>
+        <Logger name="org.slf4j" level="warn" additivity="true"/>
+        <Logger name="org.springframework" level="warn" additivity="true"/>
+        <Logger name="org.springframework.web" level="info" additivity="true"/>
+        <Logger name="springfox" level="warn" additivity="true"/>
+        <Root level="debug">
+            <appender-ref ref="console"/>
+            <appender-ref ref="file"/>
+        </Root>
+    </loggers>
+</configuration>

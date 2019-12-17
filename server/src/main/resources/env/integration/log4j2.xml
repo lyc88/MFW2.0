@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+日志级别
+trace： 是追踪，就是程序推进以下，你就可以写个trace输出，所以trace应该会特别多，
+不过没关系，我们可以设置最低日志级别不让他输出。
+debug： 调试么，我一般就只用这个作为最低级别，trace压根不用。
+是在没办法就用eclipse或者idea的debug功能就好了么。
+info： 输出一下你感兴趣的或者重要的信息，这个用的最多了。
+warn： 有些信息不是错误信息，但是也要给程序员的一些提示，类似于eclipse中代码的验证不是有error 和warn（不算错误但是也请注意，比如以下depressed的方法）。
+error： 错误信息。用的也比较多。
+fatal： 级别比较高了。重大错误，这种级别你可以直接停止程序了，是不应该出现的错误么！不用那么紧张，其实就是一个程度的问题。
+日志级别以及优先级排序: OFF > FATAL > ERROR > WARN > INFO > DEBUG > TRACE > ALL
+如果设置为WARN，则低于WARN的信息都不会输出。对于Loggers中level的定义同样适用。
+ -->
+<configuration status="OFF">
+    <!--定义日志存放位置和格式的属性，appenders中就可以引用-->
+    <Properties>
+        <Property name="LOG_HOME">/home/app/mfw/publish/logs</Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] %class %M-%L - %m%n</Property>
+    </Properties>
+    <!--先定义所有的appender(输出器) -->
+    <appenders>
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+        </Console>
+        <!--处理DEBUG级别的日志，并把该日志放到logs/debug.log文件中-->
+        <RollingFile name="rollingDebugFile" fileName="${LOG_HOME}/debug.log" filePattern="${LOG_HOME}/debug.%d{yyyy-MM-dd}.%i.gz">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <!--打印出DEBUG级别日志，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <Filters>
+                <!--只接受程序中INFO级别的日志进行处理 -->
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <!-- 指定每天的最大压缩包个数，默认7个，超过了会覆盖之前的-->
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <RollingFile name="rollingInfoFile" fileName="${LOG_HOME}/info.log" filePattern="${LOG_HOME}/info.%d{yyyy-MM-dd}.%i.gz">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <Filters>
+                <!-- 只记录info级别信息 -->
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <!-- 指定每天的最大压缩包个数，默认7个，超过了会覆盖之前的-->
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <RollingFile name="rollingWarnFile" fileName="${LOG_HOME}/warn.log" filePattern="${LOG_HOME}/warn.%d{yyyy-MM-dd}.%i.gz">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <Filters>
+                <!-- 只记录warn级别信息 -->
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <!-- 指定每天的最大压缩包个数，默认7个，超过了会覆盖之前的-->
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        <RollingFile name="rollingErrorFile" fileName="${LOG_HOME}/error.log" filePattern="${LOG_HOME}/error.%d{yyyy-MM-dd}.%i.gz">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <Filters>
+                <!-- 只记录error和fatal级别信息 -->
+                <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+                <ThresholdFilter level="fatal" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <!-- 指定每天的最大压缩包个数，默认7个，超过了会覆盖之前的-->
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+    </appenders>
+    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+    <loggers>
+        <Logger name="com.zhm" level="debug" additivity="true">
+            <appender-ref ref="rollingDebugFile" />
+        </Logger>
+        <!--第三方日志系统 -->
+        <!--log4j2 自带过滤日志-->
+        <Logger name="org.apache" level="warn" additivity="true"/>
+        <Logger name="com.google" level="warn" additivity="true"/>
+        <Logger name="com.fasterxml" level="warn" additivity="true"/>
+        <Logger name="net.sf" level="warn" additivity="true"/>
+        <Logger name="javax" level="warn" additivity="true"/>
+        <Logger name="java.sql" level="warn" additivity="true"/>
+        <Logger name="org.slf4j" level="warn" additivity="true"/>
+        <Logger name="org.eclipse" level="warn" additivity="true"/>
+        <Logger name="org.jboss" level="warn" additivity="true"/>
+        <Logger name="org.dom4j" level="warn" additivity="true"/>
+        <Logger name="com.mysql" level="warn" additivity="true"/>
+        <Logger name="org.javassist" level="warn" additivity="true"/>
+        <Logger name="org.aspectj" level="warn" additivity="true"/>
+        <Logger name="org.ow2" level="warn" additivity="true"/>
+        <Logger name="antlr" level="warn" additivity="true"/>
+        <Logger name="org.antlr" level="warn" additivity="true"/>
+        <Logger name="org.aopalliance" level="warn" additivity="true"/>
+        <Logger name="org.springframework" level="warn" additivity="true"/>
+        <Logger name="org.springframework.web" level="warn" additivity="true"/>
+        <Logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug" additivity="true">
+            <appender-ref ref="rollingDebugFile" />
+        </Logger>
+        <Logger name="com.alibaba" level="warn" additivity="true"/>
+        <Logger name="com.alibaba.druid.filter.logging.Slf4jLogFilter" level="debug" additivity="true">
+            <appender-ref ref="rollingDebugFile" />
+        </Logger>
+        <Logger name="druid.sql" level="warn" additivity="true"/>
+        <Logger name="druid.sql.DataSource" level="warn" additivity="true"/>
+        <Logger name="druid.sql.Connection" level="warn" additivity="true"/>
+        <Logger name="druid.sql.Statement" level="debug" additivity="true"/>
+        <Logger name="druid.sql.ResultSet" level="warn" additivity="true"/>
+        <root level="warn">
+            <appender-ref ref="console" />
+            <appender-ref ref="rollingInfoFile" />
+            <appender-ref ref="rollingWarnFile" />
+            <appender-ref ref="rollingErrorFile" />
+        </root>
+    </loggers>
+</configuration>

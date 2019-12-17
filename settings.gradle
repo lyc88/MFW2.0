@@ -1,0 +1,5 @@
+rootProject.name = 'MFW'
+include 'dao'
+include 'server'
+include 'ui'
+
