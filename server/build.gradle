@@ -40,6 +40,9 @@ project(':server'){
         compile("org.apache.pdfbox:pdfbox:$pdfbox_version")
         compile("org.apache.pdfbox:pdfbox-tools:$pdfbox_version")
         compile("org.apache.pdfbox:fontbox:$pdfbox_version")
+// https://mvnrepository.com/artifact/org.apache.pdfbox/jempbox
+        compile group: 'org.apache.pdfbox', name: 'jempbox', version: '1.8.16'
+
         //httpClient
         compile("com.squareup.okhttp3:okhttp:$okhttp_version")
         compile("org.apache.httpcomponents:httpclient:$httpclient_version")

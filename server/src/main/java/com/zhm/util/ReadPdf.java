@@ -1,5 +1,6 @@
 package com.zhm.util;
 import java.io.File;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
@@ -41,7 +42,7 @@ public class ReadPdf {
 
     public static void main(String[] args) {
 
-        String info=ReadPdfInfo("C:/photo/3.pdf");
+        String info=ReadPdfInfo("C:/photo/191218.pdf");
         System.out.println("读取pdf数据是："+info);
     }
 }
